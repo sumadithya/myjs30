@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+  <style>
+    img {
+      transition: 30s;
+    }
+    .off {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body style="background-color: black">
+  <img src="sans.jpg" alt="sans" class="off">
+<script>
+  const img = document.querySelector('img');
+  const audio = new Audio('megalovania.mp3');
+  const secretCode = 'megalovania';
+  const pressed = [];
+  window.addEventListener('keyup', (e) => {
+    pressed.push(e.key);
+    pressed.splice(-secretCode.length -1, pressed.length - secretCode.length);
+    if (pressed.join('').includes(secretCode)){
+      alert('wanna have some bad time?');
+      audio.play();
+      img.classList.remove('off');
+    }
+    if (pressed.join('').includes('gaster')){
+      audio.pause();
+      audio.currentTime=0;
+      img.classList.add('off');  
+    }
+  });
+</script>
+</body>
+</html>
